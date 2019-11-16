@@ -25,6 +25,7 @@ También brinda un conjunto de extensiones y utlidades que son y pueden ser util
 
 * Login:
   - Se brinda al usuario dos campos de usuario y contraseña para poder iniciar sesión en la aplicación.
+  - En caso de dejar alguno de los campos vacíos, se provee un feedback apropiado para el usuario.
   
 * Listado de Restaurantes:
   - La aplicación solicita al usuario que habilite el permiso para obtener su ubicación y asi realizar la búsqueda con la misma.
