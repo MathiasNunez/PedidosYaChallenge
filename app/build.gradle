@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.mnunez.pedidosya"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        def URL_BASE = "URL_BASE"
+        def baseApiUrl_dev = "http://stg-api.pedidosya.com/public/v1/"
+        def baseApiUrl_release = "http://stg-api.pedidosya.com/public/v1/"
+
+        def IMAGE_BASE_URL = "IMAGE_BASE_URL"
+        def baseImageUrl_dev = "https://img.pystatic.com/"
+        def baseImageUrl_release = "https://img.pystatic.com/"
+
+
+        debug {
+            debuggable true
+            buildConfigField "String", URL_BASE, "\"" + baseApiUrl_dev + "\""
+            buildConfigField "String", IMAGE_BASE_URL, "\"" + baseImageUrl_dev + "\""
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", URL_BASE, "\"" + baseApiUrl_release + "\""
+            buildConfigField "String", IMAGE_BASE_URL, "\"" + baseImageUrl_release + "\""
+        }
+
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation project(':mnunezcore')
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fillViewport="true"
+    tools:context=".activities.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_xlarge" />
+
+        <LinearLayout
+            android:id="@+id/form_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:background="@drawable/bg_white_rounded"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_large"
+            android:paddingEnd="@dimen/margin_small"
+            android:paddingBottom="@dimen/margin_large">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/login_username"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/font_size_normal" />
+
+            <com.mnunez.pedidosya.custom_views.InputBottomLineField
+                android:id="@+id/user_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:fontFamily="sans-serif"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/blackish"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/font_size_medium"
+                android:text="trivia_f"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/login_password"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/font_size_normal" />
+
+            <com.mnunez.pedidosya.custom_views.InputBottomLineField
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:inputType="textPassword"
+                android:textColor="@color/blackish"
+                android:textSize="@dimen/font_size_medium"
+                android:text="PeY@@Tr1v1@943"/>
+
+            <com.mnunez.pedidosya.custom_views.OrangeButton
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_small"
+                android:text="@string/login_login_action"
+                android:textSize="@dimen/font_size_medium" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/progress_bar"
+            layout="@layout/layout_progress_bar"
+            android:layout_alignTop="@id/form_container"
+            android:layout_alignBottom="@id/form_container"
+            android:layout_alignStart="@id/form_container"
+            android:layout_alignEnd="@id/form_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </RelativeLayout>
+
+</ScrollView>

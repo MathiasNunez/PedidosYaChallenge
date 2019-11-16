@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/parent_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".activities.SearchActivity">
+
+            <TextView
+                android:id="@+id/top_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_small"
+                android:textSize="@dimen/font_size_xlarge"
+                android:textColor="@color/colorAccent"
+                android:layout_marginStart="@dimen/margin_small"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/restaurants_title"/>
+
+            <LinearLayout
+                android:id="@+id/search_result_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/top_text">
+
+                <TextView
+                    android:id="@+id/total_results_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:textColor="@color/blackish"
+                    android:textSize="@dimen/font_size_medium"
+                    android:layout_gravity="start"
+                    android:paddingStart="@dimen/margin_small"
+                    android:paddingEnd="@dimen/margin_small"
+                    android:paddingTop="@dimen/margin_small"
+                    android:paddingBottom="@dimen/margin_minimum"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="1500 resultados"/>
+
+                <TextView
+                    android:id="@+id/address_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawableStart="@drawable/ic_person_pin"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/font_size_small"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:fontFamily="sans-serif"
+                    tools:text="1500 resultados"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@color/lightGray"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/search_result_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/layout_search_result_item"/>
+
+                <include
+                    android:id="@+id/paging_progress_bar"
+                    layout="@layout/layout_paging_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/items_displayed_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_blue_rounded"
+        android:padding="@dimen/margin_minimum"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:textSize="@dimen/font_size_medium"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"
+        tools:text="10 de 1300"/>
+
+    <include
+        android:id="@+id/full_screen_progress_bar"
+        layout="@layout/layout_solid_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:visibility="gone"/>
+
+</RelativeLayout>

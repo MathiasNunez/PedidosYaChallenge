@@ -1,0 +1,2 @@
+include ':app', ':mnunezcore'
+rootProject.name='Pedidos Ya Challenge'

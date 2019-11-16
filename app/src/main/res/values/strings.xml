@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Pedidos Ya Challenge</string>
+    <string name="general_yes">Si</string>
+    <string name="general_no">No</string>
+
+    <!-- General Errors -->
+    <string name="no_connection_error_title">Oh no!\nNo tienes conexión a internet.</string>
+    <string name="no_connection_error_message">Por favor valida tu conexión a internet y reintenta luego.</string>
+    <string name="general_exit">Salir</string>
+    <string name="general_retry">Reintentar</string>
+    <string name="api_error_header">Oops, ha ocurrido un error.</string>
+    <string name="api_error_description">Hemos tenido problemas para conectar con nuestros servicios, intente más
+        tarde.
+    </string>
+
+
+    <!-- Login -->
+    <string name="login_username">Usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_login_action">Log in</string>
+    <string name="login_error_username">El Usuario es requerido</string>
+    <string name="login_error_password">La Contraseña es requerida</string>
+    <string name="login_error_invalid_credentials">Usuario o Contraseña incorrectos</string>
+
+    <!-- Restaurants -->
+    <string name="restaurants_title">Restaurants</string>
+    <string name="restaurants_displaying_items">%1$d de %2$d</string>
+    <string name="restaurants_total_results">%1$d restaurantes</string>
+    <string name="restaurants_shipment">- Envío $%1$d</string>
+    <string name="restaurants_shipment_free">- Envío gratis</string>
+    <string name="restaurants_discount">%1$d%% de descuento</string>
+    <string name="restaurants_permission_denied">La aplicación necesita acceder a su ubicación\nPermitr?</string>
+    <string name="restaurants_permission_denied_rationale">La aplicación necesita acceder a su ubicación\nPara poder acceder, por favor vaya a ajustes y habilite el permiso.</string>
+
+</resources>
