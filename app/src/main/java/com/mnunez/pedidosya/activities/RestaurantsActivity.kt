@@ -66,7 +66,7 @@ class RestaurantsActivity : PYBaseActivity<RestaurantsActivity, RestaurantsPrese
         } else {
             search_result_recycler.layoutManager =
                 LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-            requestPermission(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), this)
+            requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
 
             parent_scroll_view.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
                 if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
@@ -85,9 +85,9 @@ class RestaurantsActivity : PYBaseActivity<RestaurantsActivity, RestaurantsPrese
             location = it
             val geocoder = Geocoder(this, Locale.getDefault())
             val address =
-                geocoder.getFromLocation(location?.latitude!!, location?.longitude!!, 1)?.first()
-            address?.let { ad ->
-                val currentAddress = ad.thoroughfare + " " + ad.subThoroughfare
+                geocoder.getFromLocation(location?.latitude!!, location?.longitude!!, 1)
+            address?.first().let { ad ->
+                val currentAddress = ad?.thoroughfare + " " + ad?.subThoroughfare
                 address_text?.text = currentAddress
             }
             mPresenter.searchRestaurants(location?.latitude?.toString() + "," + location?.longitude?.toString())

@@ -8,7 +8,7 @@ import com.mnunez.core.extensions.roundDecimal
 import com.mnunez.core.extensions.show
 import com.mnunez.pedidosya.BuildConfig
 import com.mnunez.pedidosya.R
-import com.mnunez.pedidosya.extensions.loadImage
+import com.mnunez.pedidosya.extensions.loadImageRoundedCorners
 import com.mnunez.pedidosya.network.models.Restaurant
 import kotlinx.android.synthetic.main.layout_search_result_item.view.*
 
@@ -39,7 +39,7 @@ class RestaurantsAdapter(
         fun bind(item: Restaurant) {
             itemView.item_name.text = item.name
             itemView.item_rating.text = item.generalScore?.roundDecimal().toString()
-            itemView.item_thumb.loadImage(BuildConfig.IMAGE_BASE_URL + item.logo)
+            itemView.item_thumb.loadImageRoundedCorners(BuildConfig.IMAGE_BASE_URL + "restaurants/" + item.logo)
             itemView.item_payment.text = item.paymentMethods?.replace(",", ", ")
             var shipment = item.deliveryTime
             item.shippingAmount?.let {

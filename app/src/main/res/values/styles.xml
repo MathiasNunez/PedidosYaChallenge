@@ -12,7 +12,9 @@
     </style>
 
     <style name="RestaurantTheme" parent="AppTheme">
-        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/almost_white</item>
+        <item name="android:navigationBarColor">@color/almost_white</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
