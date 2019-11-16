@@ -1,9 +1,13 @@
 package com.mnunez.pedidosya.activities
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.core.widget.NestedScrollView
@@ -24,7 +28,7 @@ import com.mnunez.pedidosya.presenters.RestaurantsPresenter
 import kotlinx.android.synthetic.main.activity_restaurants.*
 import org.jetbrains.anko.toast
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class RestaurantsActivity : PYBaseActivity<RestaurantsActivity, RestaurantsPresenter>(),
     PermissionsCallback, RestaurantsAdapter.RestaurantsListener {
@@ -40,20 +44,39 @@ class RestaurantsActivity : PYBaseActivity<RestaurantsActivity, RestaurantsPrese
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurants)
+    }
 
-        search_result_recycler.layoutManager =
-            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
+    override fun onResume() {
+        super.onResume()
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            AlertUtils.showTwoButtonsAlert(
+                context = this,
+                title = getString(R.string.app_name),
+                message = getString(R.string.location_off_message),
+                onNegativeClicked = {
+                    onBackPressed()
+                },
+                onPositiveClicked = {
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                },
+                btnPositive = getString(R.string.general_yes),
+                btnNegative = getString(R.string.general_no)
+            )
+        } else {
+            search_result_recycler.layoutManager =
+                LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+            requestPermission(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), this)
 
-        parent_scroll_view.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
-            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-                if (!isLoadingMoreItems && itemsSize < totalResults) {
-                    isLoadingMoreItems = true
-                    mPresenter.loadMoreItems()
+            parent_scroll_view.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
+                if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+                    if (!isLoadingMoreItems && itemsSize < totalResults) {
+                        isLoadingMoreItems = true
+                        mPresenter.loadMoreItems()
+                    }
                 }
-            }
-        })
-
+            })
+        }
     }
 
     override fun granted() {
@@ -61,9 +84,10 @@ class RestaurantsActivity : PYBaseActivity<RestaurantsActivity, RestaurantsPrese
         fusedLocationClient.lastLocation.addOnSuccessListener {
             location = it
             val geocoder = Geocoder(this, Locale.getDefault())
-            val address = geocoder.getFromLocation(location?.latitude!!, location?.longitude!!, 1)?.first()
-            address?.let {ad ->
-                val currentAddress = ad.thoroughfare+ " " + ad.subThoroughfare
+            val address =
+                geocoder.getFromLocation(location?.latitude!!, location?.longitude!!, 1)?.first()
+            address?.let { ad ->
+                val currentAddress = ad.thoroughfare + " " + ad.subThoroughfare
                 address_text?.text = currentAddress
             }
             mPresenter.searchRestaurants(location?.latitude?.toString() + "," + location?.longitude?.toString())
